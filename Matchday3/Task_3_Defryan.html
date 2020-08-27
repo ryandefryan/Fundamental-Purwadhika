@@ -1,0 +1,111 @@
+<script>
+    // [KASIR]
+    // Identifikasi Data : Product, Harga, Stock, Quantity, Pembayaran
+    // Masukan jumlah quantity. Apabila quantity melebihi stock, maka jumlah quantity mengikuti jumlah stock yang ada
+    // Hitung Total Per-Item = Harga * Quantity (untuk mencari total per-item)
+    // Jumlahkan seluruh "Total Per-Item" untuk mengetahui total belanja keseluruhan".
+    // Hitung Pembayaran = Uang Dibayarkan - Total Belanja Keseluruhan
+    // Buat Conditional Statement menggunakan "If"
+
+    var product1 = 'Apel'
+    var product2 = 'Anggur'
+    var product3 = 'Jeruk'
+
+    var stockproduct1 = 10
+    var stockproduct2 = 15
+    var stockproduct3 = 20
+
+    var hargaproduct1 = 10000
+    var hargaproduct2 = 15000
+    var hargaproduct3 = 20000
+
+    var totalproduct1
+    var totalproduct2
+    var totalproduct3
+
+    var checkquantity = true
+
+    var quantityproduct1 = prompt('Masukan Jumlah ' + product1 + ' : \n ( Harga Per-Kilo : Rp.' + hargaproduct1 + ' )')
+    if(quantityproduct1 > stockproduct1){
+        checkquantity = false
+        quantityproduct1 = stockproduct1
+        alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stockproduct1)
+    }
+    
+    var quantityproduct2 = prompt('Masukan Jumlah ' + product2 + ' : \n ( Harga Per-Kilo : Rp.' + hargaproduct2 + ' )')
+    if(quantityproduct2 > stockproduct2){
+        checkquantity = false
+        quantityproduct2 = stockproduct2
+        alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stockproduct2)
+    }
+
+    var quantityproduct3 = prompt('Masukan Jumlah ' + product3 + ' : \n ( Harga Per-Kilo : Rp.' + hargaproduct3 + ' )')
+    if(quantityproduct3 > stockproduct3){
+        checkquantity = false
+        quantityproduct3 = stockproduct3
+        alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stockproduct3)
+    }
+
+    totalproduct1 = quantityproduct1 * hargaproduct1
+    totalproduct2 = quantityproduct2 * hargaproduct2
+    totalproduct3 = quantityproduct3 * hargaproduct3
+
+    var grandtotal = totalproduct1 + totalproduct2 + totalproduct3
+
+    if(checkquantity == true){
+        alert(
+            'Keranjang Belanja Anda \n' +
+            '--------------------------------------------- \n'
+            + product1 + ' : ' + quantityproduct1 + ' x ' + hargaproduct1 + ' = ' + totalproduct1 + '\n'
+            + product2 + ' : ' + quantityproduct2 + ' x ' + hargaproduct2 + ' = ' + totalproduct2 + '\n'
+            + product3 + ' : ' + quantityproduct3 + ' x ' + hargaproduct3 + ' = ' + totalproduct3 + '\n' +
+            '--------------------------------------------- \n' +
+            ' Total Belanja = Rp.' + grandtotal
+        )
+
+        var pembayaran = prompt(
+            'Masukan Jumlah Uang Pembayaran Anda : \n' +
+            '( Uang Dalam "Rupiah" )'
+        )
+
+        var kembalian = pembayaran - grandtotal
+
+        if(kembalian < 0){
+            alert('Belanjaan Anda Dibatalkan!')
+        }else if(kembalian == 0){
+            alert(
+                '              STRUCK BELANJA \n' +
+                '     ###  PURWADHIKA MART  ### ' +
+                '--------------------------------------------- \n'
+                + product1 + ' : ' + quantityproduct1 + ' x ' + hargaproduct1 + ' = ' + totalproduct1 + '\n'
+                + product2 + ' : ' + quantityproduct2 + ' x ' + hargaproduct2 + ' = ' + totalproduct2 + '\n'
+                + product3 + ' : ' + quantityproduct3 + ' x ' + hargaproduct3 + ' = ' + totalproduct3 + '\n' +
+                '--------------------------------------------- \n' +
+                ' Total Belanja = Rp.' + grandtotal + '\n' +
+                ' TUNAI         = Rp.' + pembayaran + '\n' +
+                ' KEMBALI       = -' + '\n' +
+                
+                ' * Terimakasih Telah Berbelanja * '
+            )
+        }else if(kembalian > 0){
+            alert(
+                '              STRUCK BELANJA \n' +
+                '     ###  PURWADHIKA MART  ### ' +
+                '--------------------------------------------- \n'
+                + product1 + ' : ' + quantityproduct1 + ' x ' + hargaproduct1 + ' = ' + totalproduct1 + '\n'
+                + product2 + ' : ' + quantityproduct2 + ' x ' + hargaproduct2 + ' = ' + totalproduct2 + '\n'
+                + product3 + ' : ' + quantityproduct3 + ' x ' + hargaproduct3 + ' = ' + totalproduct3 + '\n' +
+                '--------------------------------------------- \n' +
+                ' Total Belanja = Rp.' + grandtotal + '\n' +
+                ' TUNAI         = Rp.' + pembayaran + '\n' +
+                ' KEMBALI       = Rp.' + kembalian + '\n' +
+                
+                ' * Terimakasih Telah Berbelanja * '
+            )
+        }else{
+            alert('Pembayaran Anda Tidak Sesuai!')
+        }
+    }else{
+        alert('Belanjaan Anda Kami Batalkan (Salah Satu Produk Melebihi Stock)')
+    }
+</script>

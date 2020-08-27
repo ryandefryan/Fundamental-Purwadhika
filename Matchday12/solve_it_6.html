@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title> Belajar DOM | Document Object Model </title>
+    </head>
+    <body>
+        <p>Masukan Angka!</p>
+        <input type="text" name="" id="angka">
+        <br>
+        <br>
+        <input type="button" value="kuadrat" id="kuadrat">
+        <h3 id="hasil"></h3>
+
+        <script>
+            var button = document.getElementById('kuadrat')
+
+            function onClickButton(){
+                var angka = document.getElementById('angka').value
+                angka = Math.pow(angka, 2)
+
+                var hasil = document.getElementById('hasil').innerHTML = 'Hasil Kuadratnya Adalah ' + angka
+            }
+
+            button.addEventListener('click', onClickButton)
+        </script>
+    </body>
+</html>

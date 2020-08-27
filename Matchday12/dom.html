@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title> Belajar DOM | Document Object Model </title>
+    </head>
+    <body>
+        <!---
+        
+            DOM (DOCUMENT OBJECT MODEL)
+            Dalam HTML Terjadi Proses Load dan Membuat Object
+
+            Object -> Untuk memanipulasi HTML
+            
+            Proses DOM -> Selector -> Memanipulasi
+
+            Element : Dari mulai tag buka < > sampai tag tutup </ >
+            InnerHTML : Diantara tag buka sampai tag tutup < > ............... </ >
+            EventListener : Ada berbagai macam (Click, Hover, onScroll)
+            .value : Untuk mendapatkan inputan dari user
+
+        --->
+        
+        <h1 id='h1'> Belajar DOM </h1>
+
+        <input type="button" id="buttonMinus" value="-">
+        <span id="angka">0</span>
+        <input type="button" id="buttonPlus" value="+">
+
+        <script>
+            var angka = document.getElementById('angka')
+            var buttonMinus = document.getElementById('buttonMinus')
+            var buttonPlus = document.getElementById('buttonPlus')
+            var counter = 0
+
+            function Plus(){
+                counter++
+                angka.innerHTML = counter
+            }
+
+            function Min(){
+                counter--
+                angka.innerHTML = counter
+            }
+
+            buttonMinus.addEventListener('click', Min)
+            buttonPlus.addEventListener('click', Plus)
+        </script>
+
+    </body>
+</html>

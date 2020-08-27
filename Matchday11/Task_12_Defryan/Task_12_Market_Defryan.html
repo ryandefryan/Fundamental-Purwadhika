@@ -1,0 +1,350 @@
+<script>
+    // [MARKET V.4.]
+    // ( + ) Sudah Menggunakan Function
+    // ( + ) Sudah Berbasis Object
+    // ( + ) Terdapat Class & Method
+    // ( + ) Terdapat Function Validation Inputan
+    
+        // ****************************** DATA ******************************
+    
+        class dataProducts {
+            constructor(product, stocks, price){
+                this.product = product;
+                this.stocks = stocks;
+                this.price = price;
+    
+                this.changeProduct = function(newProduct){
+                    this.product = newProduct
+                }
+    
+                this.changeStocks = function(newStocks){
+                    this.stocks = newStocks
+                }
+    
+                this.changePrice = function(newPrice){
+                    this.price = newPrice
+                }
+            }
+        }
+    
+        var products = [
+            new dataProducts('Apel',30,25000),
+            new dataProducts('Leci',10,32500),
+            new dataProducts('Anggur',50,35000),
+        ]
+    
+        class dataCarts {
+            constructor(productName, quantity, price, total){
+                this.productName = productName
+                this.quantity = quantity
+                this.price = price
+                this.total = total
+    
+                this.changeQuantity = function(changeQuantity){
+                    this.quantity = changeQuantity
+                }
+    
+                this.changeTotal = function(changeTotal){
+                    this.total = changeTotal
+                }
+            }
+        }
+    
+        var carts = []
+    
+        // *********************************************
+    
+    
+    
+        // ****************************** FUNCTION VALIDATION ******************************
+
+        function checkValidation(messagePrompt, typeValidation, errorMessage, optionsCount){
+            var validation = true
+            while(validation == true){
+                var input = prompt(messagePrompt)
+    
+                if(typeValidation == 'Number'){ // Check validation untuk inputan 'Number'
+                    if(input > 0){
+                        validation = false
+                    }
+                }else if(typeValidation == 'String'){ // Check validation untuk inputan 'String'
+                    if(input != ''){
+                        validation = false
+                    }
+                }else if(typeValidation == 'indexSelected'){ // Check validation untuk inputan index yg dipilih
+                    if(input > 0 && input <= optionsCount){
+                        validation = false
+                    }
+                }
+    
+                if(validation == true){ // Agar 'errorMessage' dapat diubah sesuai kebutuhan
+                    alert(errorMessage)
+                }
+            }
+    
+            return input
+        }
+
+        // *********************************************
+        
+    
+        
+        // ****************************** FUNCTION ADMIN ******************************
+    
+        function showProducts(){
+            var printOut = ''
+            for(var i = 0; i < products.length; i++){
+                printOut += (i+1) + '. ' + products[i].product + ' : Harga Rp.' + products[i].price + '/Kg (Stock : ' + products[i].stocks + ') \n'
+            }
+            printOut += '\n * Satuan Stock Dalam Kilogram *'
+    
+            return printOut
+        }
+        
+        function addNewProduct(){
+            var newProduct = checkValidation('Masukan Nama Product :','String','( ! ) Nama Product Tidak Boleh Kosong')
+            var newstocks = checkValidation('Masukan Stock "' + newProduct + '" (Dalam Kg) :','Number','( ! ) Input Hanya Boleh Angka')
+            var newPrice = checkValidation('Masukan Harga "' + newProduct + '" (Dalam Rp) :','Number','( ! ) Input Hanya Boleh Angka')
+    
+            var obj = new dataProducts(newProduct, newstocks, newPrice)
+    
+            products.push(obj)
+            alert('Product Successfully Added!')
+            alert(showProducts())
+        }
+    
+        function updateProduct(){
+            var printOut = '///// UPDATE PRODUCTS ///// \n\n'
+            printOut += showProducts()
+            printOut += '\n\n Pilih Product Yang Ingin Diubah :'
+            var indexSelected = checkValidation(printOut,'indexSelected','( ! ) Data Tidak Tersedia',products.length) - 1
+            
+            var pilihUpdateMenu = '///// UPDATE PRODUCTS ///// \n\n Pilih Menu \n 1. Update Nama \n 2. Update Stocks \n 3. Update Harga'
+            var menuEditSelected = checkValidation(pilihUpdateMenu,'indexSelected','Pilihan Tidak Tersedia',3)
+    
+            if(menuEditSelected == 1){
+                var newProduct = checkValidation('Masukan Nama Product :','String','( ! ) Nama Product Tidak Boleh Kosong')
+                products[indexSelected].changeProduct(newProduct)
+            }else if(menuEditSelected == 2){
+                var newStocks = checkValidation('Masukan Stock "' + products[indexSelected].product + '" (Dalam Kg) :','Number','( ! ) Input Hanya Boleh Angka')
+                products[indexSelected].changeStocks(newStocks)
+            }else if(menuEditSelected == 3){
+                var newPrice = checkValidation('Masukan Harga "' + products[indexSelected].product + '" (Dalam Rp) :','Number','( ! ) Input Hanya Boleh Angka')
+                products[indexSelected].changePrice(newPrice)
+            }
+    
+            alert('Product Successfully Updated!')
+            alert(showProducts())
+        }
+    
+        function deleteProduct() {
+            var printOut = '///// UPDATE PRODUCTS ///// \n\n'
+            printOut += showProducts()
+            printOut += '\n\n Pilih Product Yang Ingin Diubah :'
+            var indexSelected = checkValidation(printOut,'indexSelected','( ! ) Data Tidak Tersedia',products.length) - 1
+    
+            products.splice(indexSelected, 1)
+            alert('Product Successfully Deleted!')
+            alert(showProducts())
+        }
+    
+        function menuAdmin(){
+            do{
+                var menu = prompt('1. Show Products \n 2. Add New Product \n 3. Update Product \n 4. Delete Product \n 5. Back')
+                if(menu == 1){
+                    alert(showProducts())
+                }else if(menu == 2){
+                    addNewProduct()
+                }else if(menu == 3){
+                    updateProduct()
+                }else if(menu == 4){
+                    deleteProduct()
+                }else if(menu == 5){
+                    
+                }else{
+                    alert('( ! ) Menu Tidak Tersedia')
+                }
+            }while(menu != 5)
+        }
+    
+        // *********************************************
+        
+    
+    
+        // ****************************** FUNCTION CUSTOMER ******************************
+    
+        function showCarts() {
+            var printOut = ''
+            for(var i = 0; i < carts.length; i++){
+                printOut += (i+1) + '. ' + carts[i].productName + ' : ' + carts[i].price + ' x ' + carts[i].quantity + ' Kg = Rp.' + carts[i].total + '\n'
+            }
+    
+            if(carts.length == 0){
+                printOut += '( ! ) Keranjang Belanja Anda Masih Kosong'
+            }
+    
+            return printOut
+        }
+    
+        function productToCarts() {
+            var checkAddToCarts = true
+
+            while(checkAddToCarts == true){
+                var printOut = '///// LIST PRODUCTS ///// \n\n'
+                printOut += showProducts()
+                printOut += '\n\n Tambahkan Ke Keranjang :'
+                var indexSelected = checkValidation(printOut,'indexSelected','( ! ) Data Tidak Tersedia',products.length) - 1
+                if(products[indexSelected].stocks == 0){
+                    checkAddToCarts = true
+                    alert('( ! ) Stock Product Telah Habis')
+                }else{
+                    checkAddToCarts = false
+                }
+            }
+                
+            var addQuantity = checkValidation('Masukan Quantity "' + products[indexSelected].product + '" (Dalam Kg) :','indexSelected','( ! ) Error Message : \n - Stock Tidak Tersedia (Sisa Stock : '+ products[indexSelected].stocks +' Kg) \n - Input Tidak Sesuai',products[indexSelected].stocks)
+            var obj = new dataCarts(products[indexSelected].product, addQuantity, products[indexSelected].price, products[indexSelected].price * addQuantity)
+            products[indexSelected].changeStocks(products[indexSelected].stocks - addQuantity) // Jumlah Stocks Akan Berkurang
+            carts.push(obj)
+
+            alert('Item Added To Carts!')
+            alert(showCarts())
+        }
+        
+        function updateCarts(){
+            var printOut = '///// LIST KERANJANG ANDA ///// \n\n'
+            printOut += showCarts()
+            printOut += '\n\n Pilih Item Yang Ingin Diubah :'
+            var indexSelected = checkValidation(printOut,'indexSelected','( ! ) Data Tidak Tersedia',carts.length) - 1
+            
+            // Jumlah Stocks Dikembalikan Seperti Semula, 
+            // Agar User Dapat Mengubah Quantity Sesuai Dengan Stocks Item Secara Keseluruhan
+            for(var i = 0; i < products.length; i++){
+                if(carts[indexSelected].productName == products[i].product){
+                    products[i].changeStocks(parseInt(products[i].stocks) + parseInt(carts[indexSelected].quantity))
+                    
+                    var updateQuantity = checkValidation('Masukan Quantity "' + carts[indexSelected].productName + '" (Dalam Kg) :','indexSelected','( ! ) Error Message : \n - Stock Tidak Tersedia (Sisa Stock : '+ products[i].stocks +' Kg) \n - Input Tidak Sesuai',products[i].stocks)
+                    products[i].changeStocks(products[i].stocks - updateQuantity)
+                    carts[indexSelected].changeQuantity(updateQuantity)
+                    carts[indexSelected].changeTotal(updateQuantity * products[i].price)
+                }
+            }
+            
+
+            alert('Item Updated To Carts!')
+            alert(showCarts())
+        }
+    
+        function deleteItem(){
+            var printOut = '///// LIST KERANJANG ANDA ///// \n\n'
+            printOut += showCarts()
+            printOut += '\n\n Pilih Item Yang Ingin Dihapus :'
+            var indexSelected = checkValidation(printOut,'indexSelected','( ! ) Data Tidak Tersedia',carts.length) - 1
+            
+            // Product Dihapus dari Carts dan Jumlah Stocks Dikembalikan Seperti Semula 
+            for(var i = 0; i < products.length; i++){
+                if(carts[indexSelected].productName == products[i].product){
+                    products[i].changeStocks(parseInt(products[i].stocks) + parseInt(carts[indexSelected].quantity)) 
+                }
+            }
+            carts.splice(indexSelected, 1)
+            alert('Item Deleted From Carts!')
+            alert(showCarts())
+        }
+
+        function checkOut(){
+
+            var grandTotal = 0
+            for(var i = 0; i < carts.length; i++){
+                    grandTotal += carts[i].total
+            }
+            var printOut = '   Keranjang Belanja Anda \n' +
+                               '------------------------------- \n'
+                printOut += showCarts()
+                printOut += '\n ------------------------------- \n' +
+                            ' Total Belanja = Rp.' + grandTotal
+                printOut += '\n\n Masukan Jumlah Nominal Anda : '
+
+            var checkPayment = true
+
+            while(checkPayment == true){
+                var payment = prompt(printOut)
+
+                if(payment >= grandTotal){
+                    checkPayment = false
+                }else if(payment < grandTotal){
+                    checkPayment = true
+                    alert('Jumlah Uang yang Anda Masukan Kurang!')
+                }else{
+                    checkPayment = true
+                    alert('Inputan Tidak Sesuai!')
+                }
+            }
+
+            var change = payment - grandTotal
+            var struck = ''
+            struck +=
+                '              STRUCK BELANJA \n' +
+                '     ###  PURWADHIKA MART  ### ' +
+                '----------------------------------------- \n'
+            struck += showCarts()
+            struck +=
+                '----------------------------------------- \n' +
+                ' Total Belanja = Rp.' + grandTotal + '\n' +
+                ' TUNAI         = Rp.' + payment + '\n' +
+                ' KEMBALI       = Rp.' + change + '\n\n' +
+                        
+                ' * Terimakasih Telah Berbelanja * '
+
+            alert(struck)
+            products.splice(indexSelected)
+            return struck
+        }
+    
+        function menuCustomer(){
+            do{
+                var menu = prompt('1. My Carts \n 2. Add Item \n 3. Update Item \n 4. Delete Item \n 5. Checkout \n 6. Back')
+                if(menu == 1){
+                    alert(showCarts())
+                }else if(menu == 2){
+                    productToCarts()
+                }else if(menu == 3 && carts.length == 0){
+                    alert('( ! ) Keranjang Belanja Anda Masih Kosong')
+                }else if(menu == 3){
+                    updateCarts()
+                }else if(menu == 4 && carts.length == 0){
+                    alert('( ! ) Keranjang Belanja Anda Masih Kosong')
+                }else if(menu == 4){
+                    deleteItem()
+                }else if(menu == 5 && carts.length == 0){
+                    alert('( ! ) Keranjang Belanja Anda Masih Kosong')
+                }
+                else if(menu == 5){
+                    checkOut()
+                }else if(menu == 6){
+                    
+                }else{
+                    alert('( ! ) Menu Tidak Tersedia')
+                }
+            }while(menu != 6)
+        }
+    
+        // *********************************************
+    
+    
+    
+        // ****************************** PROGRAMS ******************************
+    
+        do{
+            var loginAs = prompt('1. Admin \n 2. Pembeli \n 3. Exit')
+            if(loginAs == 1){
+                menuAdmin()
+            }else if(loginAs ==2){
+                menuCustomer()
+            }else if(loginAs == 3){
+                alert('( :D ) Thankyou For Using Us! ')
+            }
+        }while(loginAs != 3)
+    
+        // *********************************************
+    </script>

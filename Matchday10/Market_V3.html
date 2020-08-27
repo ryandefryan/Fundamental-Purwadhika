@@ -1,0 +1,139 @@
+<script>
+// [MARKET V.3.]
+// ( + ) Sudah Menggunakan Function
+// ( + ) Sudah Berbasis Object
+
+    // ****************************** DATA ******************************
+
+    var dataMarket = [
+        {
+            products : 'Apel',
+            stocks : 10,
+            price : 25000
+        },
+        {
+            products : 'Anggur',
+            stocks : 15,
+            price : 45000
+        },
+        {
+            products : 'Jeruk',
+            stocks : 20,
+            price : 10000
+        }
+    ]
+
+    // *********************************************
+
+
+
+    // ****************************** FUNCTION ******************************
+
+    function showProducts(){
+        var output = ''
+        for(var i = 0; i < dataMarket.length; i++){
+            output += (i+1) + '. ' + dataMarket[i].products + ' : Harga Rp.' + dataMarket[i].price + '/Kg (Stock : ' + dataMarket[i].stocks + ') \n'
+        }
+        output += '\n *Satuan Stock Dalam Kilogram (Kg)'
+
+        return output
+    }
+    
+    function addNewProduct(){
+        var validation = false
+
+        while(validation == false){
+            var newProduct = prompt('Masukan Nama Product :')
+
+            if(newProduct != ''){
+                validation = true
+                var newStock = prompt('Masukan Jumlah Stock "' + newProduct + '" (Dalam Kg) :')
+                var newPrice = prompt('Masukan Harga "' + newProduct + '" (Dalam Rp) :')
+            }else{
+                validation = false
+                alert('( ! ) Data Wajib Diisi')
+            }
+        }
+
+        var obj = {
+            products : newProduct,
+            stocks : newStock,
+            price : newPrice
+        }
+
+        dataMarket.push(obj)
+        alert('Data Successfully Added!')
+    }
+
+    function getIndexSelected(product){
+        var output = product
+        output += showProducts()
+
+        var indexSelected = prompt(output) - 1
+
+        return indexSelected
+    }
+
+    function updateProduct(){
+        var validation = false
+
+        while(validation == false){
+            var indexSelected = getIndexSelected('///// UPDATE MENU ///// \n\n Pilih Data Yang Akan Diubah : \n')
+            
+            if((indexSelected >= 0) && (indexSelected < dataMarket.length)){ // Kenapa indexSelected >= BUKAN >, karena di function getIndexSelected, indexSelected sudah di minus 1
+                validation = true
+                var updateProduct = prompt('Masukan Update Nama Product :')
+                dataMarket[indexSelected].products = updateProduct
+                alert('Data Successfully Updated!')
+            }else if((indexSelected < 0) || (indexSelected > dataMarket.length)){ // Kenapa indexSelected >= BUKAN >, karena di function getIndexSelected, indexSelected sudah di minus 1
+                validation = false
+                alert('( ! ) Data Tidak Ditemukan')
+            }else{
+                validation = false
+                alert('( ! ) Salah Inputan')
+            }
+        }
+    }
+
+    function deleteProduct() {
+        var validation = false
+
+        while(validation == false){
+            var indexSelected = getIndexSelected('///// DELETE MENU ///// \n\n Pilih Data Yang Akan Dihapus : \n')
+            
+            if((indexSelected >= 0) && (indexSelected < dataMarket.length)){ // Kenapa indexSelected >= BUKAN >, karena di function getIndexSelected, indexSelected sudah di minus 1
+                validation = true
+                dataMarket.splice(indexSelected, 1)
+                alert('Data Successfully Deleted!')
+            }else if((indexSelected < 0) || (indexSelected > dataMarket.length)){ // Kenapa indexSelected >= BUKAN >, karena di function getIndexSelected, indexSelected sudah di minus 1
+                validation = false
+                alert('( ! ) Data Tidak Ditemukan')
+            }else{
+                validation = false
+                alert('( ! ) Salah Inputan')
+            }
+        }
+    }
+
+    // *********************************************
+
+
+
+    // ****************************** PROGRAMS ******************************
+
+    do{
+        var menu = prompt('1. Show Products \n 2. Add New Product \n 3. Update Product \n 4. Delete Product \n 5. Exit')
+        if(menu == 1){
+            alert(showProducts())
+        }else if(menu == 2){
+            addNewProduct()
+        }else if(menu == 3){
+            updateProduct()
+        }else if(menu == 4){
+            deleteProduct()
+        }
+    }while(menu != 5)
+
+    // *********************************************
+
+</script>

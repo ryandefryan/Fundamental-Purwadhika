@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>CRUD Array of Object with DOM</title>
+    </head>
+    <style>
+        table,tr,td{
+            border: 2px solid darkblue;
+            padding: 10px;
+            border-collapse: collapse;
+        }
+    </style>
+    <body>
+        <center>
+            <h1>Data Kucing</h1>
+            <table id="dataTable">
+                <tr>
+                    <td>Nama</td>
+                    <td>Warna Bulu</td>
+                    <td>Berat</td>
+                    <td>Umur</td>
+                    <td>Jenis</td>
+                    <td>Foto</td>
+                </tr>
+            </table>
+            <br>
+            <table id="formInput">
+                <tr>
+                    <td>
+                        Nama Kucing : <br>
+                        <input type="text" name="" id="" class="inputBox" placeholder="[A-Z] / [a-z]"> <br><br>
+                        Warna Bulu : <br>
+                        <input type="text" name="" id="" class="inputBox" placeholder="[A-Z] / [a-z]"> <br><br>
+                        Berat : <br>
+                        <input type="text" name="" id="" class="inputBox" placeholder="[0-9]"> <br><br>
+                        Umur : <br>
+                        <input type="text" name="" id="" class="inputBox" placeholder="[0-9]"> <br><br>
+                        Jenis : <br>
+                        <select name="" class="selectJenis">
+                            <option value="">- Pilih Jenis -</option>
+                            <option value="Lokal">Lokal</option>
+                            <option value="Persia" id="selectJenis">Persia</option>
+                            <option value="Angora">Angora</option>
+                            <option value="Siam">Siam</option>
+                        </select>  <br><br>
+                        Foto : <br>
+                        <input type="text" name="" id="" class="inputBox" placeholder="Link URL"> <br><br>
+                        <input type="button" id="buttonSubmit" value="Submit">
+                        <input type="button" id="buttonCancel" value="Cancel" style="display: none;"> <br>
+                        <h5 style="color: crimson;" id="errorMessage"></h3>
+                    </td>
+                </tr>
+            </table>
+        </center>        
+    </body>
+    <script src="./crudV1.js"></script>
+</html>

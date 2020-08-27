@@ -1,0 +1,88 @@
+<script>
+    // [APLIKASI TAMPILKAN DAN DELETE DATA]
+    // Aplikasi CRUD Menggunakan Array + Validasi Menggunakan Looping
+
+    var namaSiswa = ['Defryan','Firman','Ansor','Aji','Yudis']
+    var alamatSiswa = ['Sidoarjo','Sumedang','Bandung','Bandung','Bandung']
+
+    do {
+        var menu = prompt('Pilih Menu \n 1. Tampilkan Data \n 2. Delete Data \n 3. Tambah Data \n 4. Update Data \n 5. Exit')
+        var print = ''
+        if (menu == 1){
+            // Menu 1 : Menampilkan Data
+            for(var i = 0; i < namaSiswa.length; i++){
+                print += i+1 + '. ' + namaSiswa[i] + ', Berasal Dari : ' + alamatSiswa[i] + '\n'
+            }
+            alert(print)
+        }else if(menu == 2){
+            // Menu 2 : Delete Data
+            // 1. Tampilkan Data
+            var print = ''
+            var checkValidation = false
+            print += '(!) DELETE DATA \n'
+            for(var i = 0; i < namaSiswa.length; i++){
+                print += i+1 + '. ' + namaSiswa[i] + ', Berasal Dari : ' + alamatSiswa[i] + '\n'
+            }
+            // 2. Pilih Data yang Akan Dihapus + Validasi
+            while(checkValidation == false){
+                var dataSelected = prompt(print + '\n Pilih Nomor Data yang Akan Dihapus : ')
+                if(dataSelected>0 && (dataSelected-1)<namaSiswa.length){
+                    checkValidation = true
+                    namaSiswa.splice(dataSelected-1, 1) // Hapus Data Nama Siswa
+                    alamatSiswa.splice(dataSelected-1, 1) // Hapus Data Alamat Siswa
+                    alert('Data Deleted Succesfully!')
+                }else{
+                    checkValidation = false
+                    alert('Data Tidak Tersedia!')
+                }
+            }
+        }else if(menu == 3){
+            var tambahNamaSiswa = prompt('(+) TAMBAH DATA \n Masukan Nama Siswa : ')
+            namaSiswa.push(tambahNamaSiswa)
+            var tambahAlamatSiswa = prompt('(+) TAMBAH DATA \n Masukan Alamat Siswa : ')
+            alamatSiswa.push(tambahAlamatSiswa)
+        }else if(menu == 4){
+            // Menu 4 : Update Data
+            // 1. Tampilkan Data dan Pilih Data yang Akan Diupdate
+            var print = ''
+            var checkValidation = false
+            print += '(^) UPDATE DATA \n'
+            for(var i = 0; i < namaSiswa.length; i++){ // Tampilkan Data
+                print += i+1 + '. ' + namaSiswa[i] + ', Berasal Dari : ' + alamatSiswa[i] + '\n'
+            }
+            while(checkValidation == false){ // Pilih Data yang Akan Diupdate + Validasi
+                var dataSelected = prompt(print + '\n Pilih Nomor Data yang Akan Diupdate :')
+
+                if(dataSelected>0 && (dataSelected-1)<namaSiswa.length){
+                    checkValidation = true
+                }else{
+                    checkValidation = false
+                    alert('Data Tidak Tersedia!')
+                }
+            }
+            // 2. Pilih Update Data Nama / Alamat + Validasi
+            var checkValidation = false
+            while(checkValidation == false){
+                var menuUpdateSelected = prompt('(^) UPDATE DATA \n Pilih Update : \n 1. Nama \n 2. Alamat')
+
+                if(menuUpdateSelected == 1){
+                    checkValidation = true
+                    var updateNamaSiswa = prompt('(^) UPDATE DATA \n Masukan Update Nama Siswa : ')
+                    namaSiswa[dataSelected-1] = updateNamaSiswa
+                    alert('Data Updated Succesfully!')
+                }else if(menuUpdateSelected == 2){
+                    checkValidation = true
+                    var updateAlamatSiswa = prompt('(^) UPDATE DATA \n Masukan Update Alamat Siswa : ')
+                    alamatSiswa[dataSelected-1] = updateAlamatSiswa
+                    alert('Data Updated Succesfully!')
+                }else{
+                    checkValidation = false
+                    alert('Salah Input!')
+                }
+            }
+        }else{
+            alert('Salah Input!')
+        }
+        
+    } while (menu != 5);
+</script>

@@ -1,0 +1,27 @@
+<script>
+    // [KALKULATOR]
+    // Parameter : Angka 1, Angka 2, Operator, Hasil Perhitungan
+    // Hitung angka 1 dan angka 2 sesuai dengan operator yang diinginkan
+
+    var angka1, angka2, operator, hasil
+
+    angka1 = prompt('Masukan Angka 1 : ')
+    angka2 = prompt('Masukan Angka 2 : ')
+    operator = prompt('Masukan Operator : +, -, *, /')
+    
+    if(operator == '+'){
+        hasil = angka1 + angka2
+        alert('Hasil Perhitungan : ' + angka1 + operator + angka2 + ' = ' + hasil )
+    }else if(operator == '-'){
+        hasil = angka1 - angka2
+        alert('Hasil Perhitungan : ' + angka1 + operator + angka2 + ' = ' + hasil )
+    }else if(operator == '*'){
+        hasil = angka1 * angka2
+        alert('Hasil Perhitungan : ' + angka1 + operator + angka2 + ' = ' + hasil )
+    }else if(operator == '/'){
+        hasil = angka1 / angka2
+        alert('Hasil Perhitungan : ' + angka1 + operator + angka2 + ' = ' + hasil )
+    }else{
+        alert('Operator Tidak Teridentifikasi!')
+    }
+</script>

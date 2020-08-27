@@ -1,0 +1,53 @@
+<script>
+
+    var data = {
+        nama : 'Defryan',
+        gender : 'Pria'
+    }
+
+    function showData(){
+        var output = ''
+        for(var prop in data){
+            output += prop + ' = ' + data[prop] + '\n'
+        }
+        return output
+    }
+
+    function addProperty(){
+        var newProp = prompt('Masukan Nama Property yang Baru')
+        var newValue = prompt('Masukan Value (Isi) dari Property')
+        data[newProp] = newValue
+        alert('New Property Added Succesfull!')
+    }
+
+    function updateProperty(){
+        var output = showData()
+        output += '\n Pilih Property yang Mau Di Update'
+        var propSelected = prompt(output)
+        var newValue = prompt('Masukan Value Barunya')
+        data[propSelected] = newValue
+        alert('Update Property Successfull!')
+    }
+
+    function deleteProperty(){
+        var output = showData()
+        output += '\n Pilih Property yang Mau Di Delete'
+        var propSelected = prompt(output)
+        delete data[propSelected]
+        alert('Delete Property Succesfull!')
+    }
+
+    do{
+        var menu = prompt('1. Show Data \n 2. Add Property \n 3. Update Property \n 4. Delete Property \n 5. Exit')
+        if(menu == 1){
+            alert(showData())
+        }else if(menu == 2){
+            addProperty()
+        }else if(menu == 3){
+            updateProperty()
+        }else if(menu == 4){
+            deleteProperty()
+        }
+    }while(menu != 5)
+
+</script>

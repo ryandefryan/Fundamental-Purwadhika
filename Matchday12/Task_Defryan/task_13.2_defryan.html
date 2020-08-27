@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title> Belajar DOM | Solve It Defryan </title>
+    </head>
+    <style>
+        table, tr, td{
+            border: 3px solid burlywood;
+            padding: 10px;
+            border-collapse: collapse;
+        }
+    </style>
+    <body>
+        <table width="300">
+            <tr>
+                <td>
+                    Ketik Kalimat : <br> <input type="text" name="" id="word" placeholder="[a-z] / [A-Z]">
+                    <br><br>
+                    Karakter Yang Dicari : <br> <input type="text" name="" id="char" placeholder="[a-z] / [A-Z]">
+                    <br><br>
+                    <input type="button" id="search" value="Search">
+                    <br><br>
+                    <center><h3 id="result"></h3></center>
+                </td>
+            </tr>
+        </table>
+        <script>
+            var button = document.getElementById('search')
+
+            function searchChar(){
+                var word = document.getElementById('word').value
+                word = word.toLowerCase()
+                var char = document.getElementById('char').value
+                char = char.toLowerCase()
+                var countChar = 0
+
+                if(word == '' || char == ''){
+                    alert('( ! ) Inputan "Wajib" Terisi Semua')
+                }else if((word < 0 || word > 0) || (char < 0 || char > 0)){
+                    alert('( ! ) Inputan Tidak "Sesuai"')
+                }else{
+                    for(var i=0; i<word.length; i++){
+                        if(char == word[i]){
+                            countChar += 1
+                        }
+                    }
+    
+                    var printOut = document.getElementById('result').innerHTML = 'Jumlah Huruf "'+ char + '" Sebanyak: ' + countChar
+                }
+
+            }
+
+            button.addEventListener('click', searchChar)
+        </script>
+    </body>
+</html>

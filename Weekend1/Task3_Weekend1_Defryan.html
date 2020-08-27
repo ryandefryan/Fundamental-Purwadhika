@@ -1,0 +1,42 @@
+<script>
+    // [SWAP NUMBER]
+    // [Ex. 34 & 98 -> 3948]
+
+    var angka1, angka2, checkDigit, hasilOutput
+    checkDigit = false
+
+    while(checkDigit == false){
+        angka1 = prompt('Masukan Angka Pertama (Maksimal 2 Digit) : ')
+        checkDigit = angka1.length
+
+        if(checkDigit == 2){
+            checkDigit = true
+        }else{
+            checkDigit = false
+            alert('Masukan Angka 2 Digit Saja!')
+        }
+    }
+
+    checkDigit = false
+    while(checkDigit == false){
+        angka2 = prompt('Masukan Angka Kedua (Maksimal 2 Digit) : ')
+        checkDigit = angka2.length
+
+        if(checkDigit == 2){
+            checkDigit = true
+        }else{
+            checkDigit = false
+            alert('Masukan Angka 2 Digit Saja!')
+        }
+    }
+
+    hasilOutput = angka1.slice(0, 1) + angka2.slice(0, 1) + angka1.slice(1, 2) + angka2.slice(1, 2)
+    alert(
+        'SWAB NUMBER RESULT \n' +
+        '---------------------------- \n' +
+        'Angka 1 = ' + angka1 + '\n' +
+        'Angka 2 = ' + angka2 + '\n' +
+        'RESULT = ' + angka1 + angka2 + ' -> ' + hasilOutput
+    )
+
+</script>

@@ -1,0 +1,117 @@
+<script>
+    // [TARIF PARKIR DENGAN VALIDASI]
+    // Menentukan Parameter : Jam Masuk, Jam Keluar, Waktu, Tarif Awal, Tarif Selanjutnya, Lama Parkir, Tarif Parkir, Check Validation
+    // Tampilkan prompt inputan untuk user (Ketentuan : Inputan Jam : 1-12, Inputan Waktu : 1 -> AM / 2 -> PM)
+    // Validasi inputan yang salah dengan menggunakan Looping While untuk menampilkan prompt hingga inputan user sesuai
+    
+    var jamMasuk, jamKeluar, waktuMasuk, waktuKeluar, tarif1, tarif2, lamaParkir, tarifParkir
+    var checkValidation = false
+
+    tarif1 = 1000
+    tarif2 = 2000
+
+    // Validasi Jam Masuk
+    while(checkValidation == false){
+        jamMasuk = parseInt(prompt('Jam Masuk Parkiran : \n Ketik 1-12'))
+        if(jamMasuk > 0 && jamMasuk <= 12){
+            checkValidation = true
+        }else{
+            checkValidation = false
+            alert('Silahkan Masukan Jam Dengan Benar ! \n (Ketik 1-12)')
+        }
+    }
+
+    // Validasi Waktu Masuk
+    while(checkValidation == true){
+        waktuMasuk = parseInt(prompt('Waktu Masuk : \n Ketik 1 -> AM (Pagi-Siang) \n Ketik 2 -> PM (Sore-Malam)'))
+        if(waktuMasuk == 1 || waktuMasuk == 2){
+            checkValidation = false
+        }else{
+            checkValidation = true
+            alert('Silahkan Ketik Angka 1 atau 2 ! \n 1 -> AM (Pagi-Siang) \n 2 -> PM (Sore-Malam)')
+        }
+    }
+
+    // Validasi Jam Keluar
+    while(checkValidation == false){
+        jamKeluar = parseInt(prompt('Jam Keluar Parkiran : \n Ketik 1-12'))
+        if(jamKeluar > 0 && jamKeluar <= 12){
+            checkValidation = true
+        }else{
+            checkValidation = false
+            alert('Silahkan Masukan Jam Dengan Benar ! \n (Ketik 1-12)')
+        }
+    }
+
+    // Validasi Waktu Keluar
+    while(checkValidation == true){
+        waktuKeluar = parseInt(prompt('Waktu Keluar : \n Ketik 1 -> AM (Pagi-Siang) \n Ketik 2 -> PM (Sore-Malam)'))
+        if(waktuKeluar == 1 || waktuKeluar == 2){
+            checkValidation = false
+        }else{
+           checkValidation = true
+            alert('Silahkan Ketik Angka 1 atau 2 ! \n 1 -> AM (Pagi-Siang) \n 2 -> PM (Sore-Malam)')
+        }
+    }
+
+
+
+    // Jika Jam Keluar < Jam Masuk Dalam Kurun Waktu yang Sama
+    if(jamKeluar < jamMasuk && waktuMasuk == waktuKeluar){
+        alert('Jam Keluar Kurang Dari Jam Masuk!')
+    }else{
+        if(waktuMasuk == 1 && waktuKeluar == 1){ // Waktu Masuk dan Waktu Keluar Sama-Sama Siang
+            lamaParkir = jamKeluar - jamMasuk
+            if(lamaParkir <= 4){                // Tarif 4 Jam Awal
+                tarifParkir = lamaParkir * tarif1
+            }else{                              // Tarif 4 Jam Selanjutnya
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            }
+        }else if(waktuMasuk == 2 && waktuKeluar == 2){  // Waktu Masuk dan Waktu Keluar Sama-Sama Malam
+            lamaParkir = (jamKeluar + 12) - (jamMasuk + 12)
+            if(lamaParkir <= 4){                        
+                tarifParkir = lamaParkir * tarif1
+            }else{                                      
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            } 
+        }else if(waktuMasuk == 1 && waktuKeluar == 2){  // Waktu Masuk Siang dan Waktu Keluar Malam
+            lamaParkir = (jamKeluar + 12) - jamMasuk
+            if(lamaParkir <= 4){                       
+                tarifParkir = lamaParkir * tarif1
+            }else{                                      
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            } 
+        }else{                                          // Waktu Masuk Malam dan Waktu Keluar Siang
+            lamaParkir = (jamKeluar + 24) - (jamMasuk + 12)
+            if(lamaParkir <= 4){                        
+                tarifParkir = lamaParkir * tarif1
+            }else{                                      
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            } 
+        }
+        
+        if(waktuMasuk == 1 ){
+        waktuMasuk = ' A.M.'
+        }else{
+            waktuMasuk = ' P.M.'
+        }
+        if(waktuKeluar == 1){
+            waktuKeluar = ' A.M.'
+        }else{
+            waktuKeluar = ' P.M.'
+        }
+
+        alert(
+            '           PARKING TICKET \n ' +
+            'UNION SPACE PURWADHIKA \n ' +
+            '--------------------------------- \n' +
+            'Jam Masuk  : ' + jamMasuk + waktuMasuk + '\n' +
+            'Jam Keluar : ' + jamKeluar + waktuKeluar + '\n' +
+            'DURASI     : ' + lamaParkir + ' Jam \n' +
+            'TARIF      : ' + tarifParkir + '\n' +
+            '--------------------------------- \n' +
+            ' *** Hati-Hati di Jalan, Terimakasih. ***'
+        )
+    }
+
+</script>

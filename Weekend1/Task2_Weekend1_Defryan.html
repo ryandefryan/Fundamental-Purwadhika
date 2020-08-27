@@ -1,0 +1,27 @@
+<script>
+    // [RUMUS LUAS LINGKARAN]
+    // Parameter : Jari-Jari, Luas
+    // Hitung Luas = Phi x R^2
+    // Ketentuan :
+    //              Phi = 3.14
+
+    var r, checkInput, luas
+    checkInput = false
+
+    while(checkInput == false){
+        r = parseInt(prompt('Masukan Jari-Jari (Cm) : '))
+        if(r > 0){
+            checkInput = true
+            luas = 3.14 * Math.pow(r, 2)
+            alert(
+                'Luas Lingkaran = ' + luas
+            )
+        }else{
+            checkInput = false
+            alert(
+                'Inputan Yang Anda Masukan Tidak Sesuai!'
+            )
+        }
+    }
+
+</script>

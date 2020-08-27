@@ -1,0 +1,12 @@
+<script>
+    var kata = prompt('Masukan 2 Kata : ')
+
+    // Mencari Index Spasi
+    var indexSpace = kata.indexOf(' ')
+
+    var kataPertama = kata.slice(0, indexSpace)
+    var kataKedua = kata.slice(indexSpace, kata.length)
+    var output = kataKedua + ' ' + kataPertama
+
+    alert(output)
+</script>

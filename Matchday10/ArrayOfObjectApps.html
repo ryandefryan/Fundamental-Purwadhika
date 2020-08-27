@@ -1,0 +1,76 @@
+<script>
+
+    var dataPost = [
+        {
+            title : 'Fundamental Javascript',
+            publishDate : '10-5-2020',
+            author : 'Fikri'
+        },
+        {
+            title : 'Fundamental for Beginner',
+            publishDate : '5-7-2020',
+            author : 'Seto'
+        }
+    ]
+
+    function showData(){
+        var output = ''
+        for(var i = 0; i < dataPost.length; i++){
+            output += (i+1) + '. "' + dataPost[i].title + '" By ' + dataPost[i].author + ' (Published : ' + dataPost[i].publishDate + ') \n'
+        }
+
+        return output
+    }
+
+    function addNewData(){
+        var newTitle = prompt('Enter Title : ')
+        var newPublishDate = prompt('Enter Date : (Ex. 20-12-1995)')
+        var newAuthor = prompt('Enter Author : ')
+
+        var obj = {
+            title : newTitle,
+            publishDate : newPublishDate,
+            author : newAuthor
+        }
+
+        dataPost.push(obj)
+        alert('Data Successfully Added!')
+    }
+
+    function getIndexSelected(title, question){
+        var output = title
+        output += showData()
+        output += question
+
+        var indexSelected = prompt(output) - 1
+
+        return indexSelected
+    }
+
+    function updateData() {
+        var indexSelected = getIndexSelected('///// UPDATE MENU ///// \n\n Pilih Data Yang Akan Diubah : \n')
+        var newTitle = prompt('Masukan Title Baru!')
+        dataPost[indexSelected].title = newTitle
+        alert('Data Successfully Updated!')
+    }
+
+    function deleteData() {
+        var indexSelected = getIndexSelected('///// DELETE MENU ///// \n\n Pilih Data Yang Akan Dihapus : \n')
+        dataPost.splice(indexSelected, 1)
+        alert('Data Successfully Deleted!')
+    }
+
+    do{
+        var menu = prompt('1. Show Data \n 2. Add New Data \n 3. Update Data \n 4. Delete Data \n 5. Exit')
+        if(menu == 1){
+            alert(showData())
+        }else if(menu == 2){
+            addNewData()
+        }else if(menu == 3){
+            updateData()
+        }else if(menu == 4){
+            deleteData()
+        }
+    }while(menu != 5)
+    
+</script>

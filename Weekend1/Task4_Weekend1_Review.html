@@ -1,0 +1,15 @@
+<script>
+    var hasilOutput
+    var i = 0
+
+    inputKalimat = prompt('Masukan Kalimat : ')
+    inputKarakter = prompt('Masukan Karakter Yang Ingin Diubah : ')
+    
+    for(var i = 0; i < inputKalimat.length; i++){
+        if(inputKalimat[i] !== inputKarakter){
+            hasilOutput = inputKalimat += inputKalimat[i]
+        }
+    }
+
+    alert(hasilOutput)
+</script>

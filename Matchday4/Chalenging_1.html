@@ -1,0 +1,27 @@
+<script>
+    // [BIAYA PARKIR]
+    // Parameter : Jam Masuk, Jam Keluar, Tarif Awal, Tarif Selanjutnya, Lama Parkir, Tarif Parkir
+    // Hitung Lama Parkir = (Jam Keluar - Jam Masuk) x Tarif
+    // Ketentuan Tarif : 4 Jam Pertama (1000/Jam) & Selanjutnya (2000/Jam)
+
+    var jamMasuk, jamKeluar, tarif1, tarif2, lamaParkir, tarifParkir;
+    
+    tarif1 = 1000
+    tarif2 = 2000
+
+    jamMasuk = prompt('Jam Masuk Parkiran : ')
+    jamKeluar = prompt('Jam Keluar Parkiran : ')
+
+    lamaParkir = jamKeluar - jamMasuk
+
+    if (jamKeluar < jamMasuk){
+        alert('Input salah! Jam masuk harus lebih besar dari jam keluar')
+    }else{
+        if(lamaParkir <= 4){
+            tarifParkir = lamaParkir * tarif1 
+        }else{
+            tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+        }
+        alert ('Anda Parkir Selama ' + lamaParkir + ' Jam, Dengan Tarif : ' + tarifParkir)
+    }
+</script>

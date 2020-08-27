@@ -1,0 +1,31 @@
+<script>
+    // [IDENTIFIKASI BB IDEAL/TIDAK IDEAL]
+    // Identifikasi Parameter : Berat Badan (Kg), Tinggi (Cm), IMT
+    // Hitung IMT = Berat Badan / ((Tinggi * 0.01)^2)
+    // Tinggi * 0.01 -> Karena Cm dikonversi menjadi Meter
+    // Buat Conditional Statement menggunakan "If"
+
+    var beratbadan = prompt('Masukan Berat Badan Saat Ini (Kg)')
+    var tinggibadan = prompt('Masukan Tinggi Badan Saat Ini (Cm)')
+
+    var imt = beratbadan / (Math.pow(tinggibadan*0.01, 2))
+
+    var hasilimt
+    if(imt < 18.5){
+        hasilimt = 'Berat Badan Anda "Kurang"'
+    }else if(imt >= 18.5 && imt <= 24.9){
+        hasilimt = 'Berat Badan Anda "Ideal"'
+    }else if(imt >= 25 && imt <= 29.9){
+        hasilimt = 'Berat Badan Anda "Berlebih"'
+    }else if(imt >= 29.9 && imt <= 39.9){
+        hasilimt = 'Berat Badan Anda "Sangat Berlebih"'
+    }else{
+        hasilimt = 'ANDA OBESITAS!'
+    }
+
+    alert(
+        'Berat Badan Anda  : ' + beratbadan + '\n' +
+        'Tinggi Badan Anda : ' + tinggibadan + '\n' +
+        'IMT : ' + imt + ', ' + hasilimt
+    )
+</script>

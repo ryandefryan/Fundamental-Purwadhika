@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title> Belajar DOM | Solve It Defryan </title>
+    </head>
+    <style>
+        table, tr, td{
+            border: 3px solid burlywood;
+            padding: 10px;
+            border-collapse: collapse;
+        }
+    </style>
+    <body>
+        <table width="300">
+            <tr>
+                <td>
+                    Masukan Angka 1 : <input type="number" name="" id="num1" placeholder="Angka [0-9]">
+                    <br><br>
+                    Masukan Angka 2 : <input type="number" name="" id="num2" placeholder="Angka [0-9]">
+                    <br><br>
+                    <center>
+                        <input type="button" class="operatorButtons" value="Kali X">
+                        <input type="button" class="operatorButtons" value="Bagi :">
+                        <input type="button" class="operatorButtons" value="Tambah +">
+                        <input type="button" class="operatorButtons" value="Kurang -">
+                        <br><br>
+                        <input type="button" class="operatorButtons" value="Modulus %">
+                        <input type="button" class="operatorButtons" value="Pangkat ^">
+                        <br><br>
+                        <h3 id="result"></h3>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <script>
+            function operations(operator){
+                var num1 = Number(document.getElementById('num1').value)
+                var num2 = Number(document.getElementById('num2').value)
+                var output = document.getElementById('result')
+
+                var operationResult = 0
+
+                if(operator == 'x'){
+                    operationResult = num1 * num2
+                }else if(operator == ':'){
+                    operationResult = num1 / num2
+                }else if(operator == '+'){
+                    operationResult = num1 + num2
+                }else if(operator == '-'){
+                    operationResult = num1 - num2
+                }else if(operator == '%'){
+                    operationResult = num1 % num2
+                }else if(operator == '^'){
+                    operationResult = Math.pow(num1, num2)
+                }
+
+                output.innerHTML = 'Hasil Operasi = ' + operationResult
+            }
+
+                var buttons = document.getElementsByClassName('operatorButtons')
+                buttons[0].addEventListener('click' , function (){return operations('x') })
+                buttons[1].addEventListener('click' , function (){return operations(':') })
+                buttons[2].addEventListener('click' , function (){return operations('+') })
+                buttons[3].addEventListener('click' , function (){return operations('-') })
+                buttons[4].addEventListener('click' , function (){return operations('%') })
+                buttons[5].addEventListener('click' , function (){return operations('^') })
+
+        </script>
+    </body>
+</html>

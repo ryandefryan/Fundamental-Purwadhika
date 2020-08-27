@@ -1,0 +1,31 @@
+<script>
+    // [SWAP WORLD]
+    
+    var karakter1, panjangKarakter1,karakter2, panjangKarakter2, hitungKarakter, checkKarakter
+    var cariKarakter, cariKarakterAwal, cariKarakterAkhir,
+    checkKarakter = false
+    
+    while(checkKarakter == false){
+        karakter1 = prompt('SWAP WORLD \n --------------- \n Masukan Kalimat (Maksimal 2 Kata) : \n Ex. Saya Makan, Mobil Bagus')
+        panjangKarakter1 = karakter1.length // Hitung jumlah Karakter 1
+    
+        karakter2 = karakter1.replace(/ /g, '  ') // Replace spasi menjadi spasi 2X
+        panjangKarakter2 = karakter2.length // Hitung jumlah Karakter 2 (setelah diberi spasi 2X)
+    
+        hitungKarakter = panjangKarakter2 - panjangKarakter1 // Untuk mengetahui jumlah spasi
+        
+        // Apabila jumlah spasi lebih dari 1, maka akan menampilkan prompt terus menerus
+        if(hitungKarakter == 1){ 
+            checkKarakter = true
+        }else{
+            checkKarakter = false
+            alert('Wajib Diisi 2 Kata Saja!')
+        }
+    }
+
+    cariKarakter = karakter1.indexOf(' ') // Cari spasi
+    cariKarakterAwal = karakter1.slice(0, cariKarakter) // Ambil kata awal hingga spasi
+    cariKarakterAkhir = karakter1.slice(cariKarakter, ) // Ambil spasi hingga kata terakhir
+
+    alert('SWAP RESULT \n --------------- \n ' + cariKarakterAkhir + ' ' + cariKarakterAwal) // Kata Akhir + Kata Awal
+</script>

@@ -1,0 +1,121 @@
+<script>
+    // [KASIR DENGAN VALIDASI]
+    // Identifikasi Data : Product, Harga, Stock, Quantity, Check Quantity, Pembayaran, Check Pembayaran
+    // Masukan jumlah quantity
+    // Apabila quantity melebihi stock, maka user diminta input ulang quantity hingga sesuai dengan stock yang tersedia
+    // Hitung Total Per-Item = Harga * Quantity (untuk mencari total per-item)
+    // Jumlahkan seluruh "Total Per-Item" untuk mengetahui total belanja keseluruhan".
+    // Masukan jumlah uang yang dibayarkan
+    // Apabila uang yang dibayarkan kurang atau tidak sesuai, maka user diminta input ulang pembayaran
+    // Hitung Pembayaran = Uang Dibayarkan - Total Belanja Keseluruhan
+
+    var product1 = 'Apel'
+    var product2 = 'Anggur'
+    var product3 = 'Jeruk'
+
+    var stockproduct1 = 10
+    var stockproduct2 = 15
+    var stockproduct3 = 20
+
+    var hargaproduct1 = 10000
+    var hargaproduct2 = 15000
+    var hargaproduct3 = 20000
+
+    var totalproduct1
+    var totalproduct2
+    var totalproduct3
+
+    var checkquantity = true
+    var checkpembayaran = true
+
+    // Validasi Stock Apel
+    while(checkquantity == true){
+        var quantityproduct1 = prompt('Masukan Jumlah ' + product1 + ' : \n ( Harga Per-Kilo : Rp.' + hargaproduct1 + ' )')
+        if(quantityproduct1 <= stockproduct1){
+            checkquantity = false
+        }else if(quantityproduct1 > stockproduct1){
+            checkquantity = true
+            alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stockproduct1)
+        }else{
+            checkquantity = true
+            alert('Inputan Tidak Sesuai !')
+        }
+    }
+    
+    // Validasi Stock Anggur
+    while(checkquantity == false){
+        var quantityproduct2 = prompt('Masukan Jumlah ' + product2 + ' : \n ( Harga Per-Kilo : Rp.' + hargaproduct2 + ' )')
+        if(quantityproduct2 <= stockproduct2){
+            checkquantity = true
+        }else if(quantityproduct2 > stockproduct2){
+            checkquantity = false
+            alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stockproduct2)
+        }else{
+            checkquantity = false
+            alert('Inputan Tidak Sesuai !')
+        }
+    }
+
+    // Validasi Stock Jeruk 
+    while(checkquantity == true){
+        var quantityproduct3 = prompt('Masukan Jumlah ' + product3 + ' : \n ( Harga Per-Kilo : Rp.' + hargaproduct3 + ' )')
+        if(quantityproduct3 <= stockproduct3){
+            checkquantity = false
+        }else if(quantityproduct3 > stockproduct3){
+            checkquantity = true
+            alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stockproduct3)
+        }else{
+            checkquantity = true
+            alert('Inputan Tidak Sesuai !')
+        }
+    }
+
+    totalproduct1 = quantityproduct1 * hargaproduct1
+    totalproduct2 = quantityproduct2 * hargaproduct2
+    totalproduct3 = quantityproduct3 * hargaproduct3
+
+    var grandtotal = totalproduct1 + totalproduct2 + totalproduct3
+
+    alert(
+        'Keranjang Belanja Anda \n' +
+        '--------------------------------------------- \n'
+        + product1 + ' : ' + quantityproduct1 + ' x ' + hargaproduct1 + ' = ' + totalproduct1 + '\n'
+        + product2 + ' : ' + quantityproduct2 + ' x ' + hargaproduct2 + ' = ' + totalproduct2 + '\n'
+        + product3 + ' : ' + quantityproduct3 + ' x ' + hargaproduct3 + ' = ' + totalproduct3 + '\n' +
+        '--------------------------------------------- \n' +
+        ' Total Belanja = Rp.' + grandtotal
+    )
+
+    while(checkpembayaran == true){
+        var pembayaran = prompt(
+            'TOTAL BELANJAAN ANDA : Rp.' + grandtotal + '\n' +
+            '* Masukan Jumlah Uang Pembayaran Anda (Dalam "Rupiah") *'
+        )
+        if(pembayaran >= grandtotal){
+            checkpembayaran = false
+        }else if(pembayaran < grandtotal){
+            checkpembayaran = true
+            alert('Jumlah Uang yang Anda Masukan Kurang! Silahkan Masukan Kembali!')
+        }else{
+            checkpembayaran = true
+            alert('Inputan Tidak Sesuai!')
+        }
+    }
+
+    var kembalian = pembayaran - grandtotal
+    alert(
+        '              STRUCK BELANJA \n' +
+        '     ###  PURWADHIKA MART  ### ' +
+        '--------------------------------------------- \n'
+        + product1 + ' : ' + quantityproduct1 + ' x ' + hargaproduct1 + ' = ' + totalproduct1 + '\n'
+        + product2 + ' : ' + quantityproduct2 + ' x ' + hargaproduct2 + ' = ' + totalproduct2 + '\n'
+        + product3 + ' : ' + quantityproduct3 + ' x ' + hargaproduct3 + ' = ' + totalproduct3 + '\n' +
+        '--------------------------------------------- \n' +
+        ' Total Belanja = Rp.' + grandtotal + '\n' +
+        ' TUNAI         = Rp.' + pembayaran + '\n' +
+        ' KEMBALI       = Rp.' + kembalian + '\n' +
+                
+        ' * Terimakasih Telah Berbelanja * '
+    )
+    
+</script>

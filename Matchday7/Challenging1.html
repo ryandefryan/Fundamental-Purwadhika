@@ -1,0 +1,44 @@
+<script>
+    // var products = ['Ayam','Kambing','Sapi']
+    // var prices = [10000,20000,50000]
+    // var stocks = [4,5,10]
+       var output = ''
+       var i = 0
+
+    // for(i=0; i<products.length; i++){
+    //     output = output += i+1 + '. ' + products[i] + ' Harga Rp.' + prices[i] + ' Memiliki Stock : ' + stocks[i] + '\n'
+    // }
+    // alert(output)
+
+
+
+    // while(i<products.length){
+    //     output = output += i+1 + '. ' + products[i] + ' Harga Rp.' + prices[i] + ' Memiliki Stock : ' + stocks[i] + '\n'
+    //     i++
+    // }
+    // alert(output)
+
+
+
+    // do{
+    //     output = output += i+1 + '. ' + products[i] + ' Harga Rp.' + prices[i] + ' Memiliki Stock : ' + stocks[i] + '\n'
+    //     i++
+    // }while(i<products.length)
+        
+    // alert(output)
+
+
+
+    var data = [
+        ['Ayam',10000,4],
+        ['Kambing',20000,9],
+        ['Sapi',30000,2],
+        ['Kelinci',5000,14],
+    ]
+
+    for(var i=0; i<data.length; i++){
+        output = output += i+1 + '. ' + data[i][0] + ' Harga Rp.' + data[i][1] + ', Sisa Stock : ' + data[i][2] +'\n'
+    }
+
+    alert(output)
+</script>

@@ -1,0 +1,35 @@
+<script>
+    // [REMOVE CHARACTER]
+    // Prompt input kalimat dari user
+    // Hitung jumlah karakter
+    // Prompt input karakter yang ingin diubah
+    // Remove karakter pada kalimat yang diinput
+
+    var inputKalimat, inputKarakter1, inputKarakter2, replaceKarakter, checkPanjangKarakter, checkKarakter
+    checkKarakter = false
+    
+    inputKalimat = prompt('Masukan Kalimat : ')
+    // Check panjang karakter yang ingin diubah (hanya boleh 1 karakter saja)
+    // Dan apakah karakter terdapat pada kalimat yang diinput
+    while(checkKarakter == false){
+        inputKarakter1 = prompt('Masukan Karakter Yang Ingin Diubah : ')
+        checkPanjangKarakter = inputKarakter1.length // Check jumlah karakter inputan
+        inputKarakter2 = new RegExp(inputKarakter1, "g")
+        checkKarakter = inputKalimat.search(inputKarakter2) // Check apakah karakter terdapat pada kalimat yang diinput        
+        // Jika karakter inputan = 1 dan karakter terdapat pada kalimat
+        if(checkPanjangKarakter == 1 && checkKarakter > 0){ 
+            checkKarakter = true
+            replaceKarakter = inputKalimat.replace(inputKarakter2, '')
+            alert(
+                    'Karakter "' + inputKarakter1 + '" Dihilangkan Dari Kalimat "' + inputKalimat + '" Menjadi : \n' +
+                    replaceKarakter
+                )
+        }else if(checkPanjangKarakter != 1){ 
+            checkKarakter = false
+            alert('NOTIF 1 : \n Karakter Yang Anda Masukan Lebih Dari Satu !!!')
+        }else{
+            checkKarakter = false
+            alert('NOTIF 2 : \n Karakter Yang Anda Masukan Tidak Terdapat Pada Kalimat Inputan !!!')
+        }
+    }
+</script>

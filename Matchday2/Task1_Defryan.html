@@ -1,0 +1,31 @@
+<script>
+    // Identifikasi data : Product, Harga, dan Quantity
+    // Harga * Quantity (untuk mencari total per-barang)
+    // Jumlahkan total tiap barang untuk menampilkan total barang keseluruhan
+
+    var product1 = 'Apel'
+    var product2 = 'Anggur'
+    var product3 = 'jeruk'
+
+    var hargaproduct1 = 10000
+    var hargaproduct2 = 15000
+    var hargaproduct3 = 20000
+
+    var quantityproduct1 = prompt('Mau Beli ' + product1 + ' Berapa? \n Harga Per-Buah : Rp. ' + hargaproduct1)
+    var quantityproduct2 = prompt('Mau Beli ' + product2 + ' Berapa? \n Harga Per-Buah : Rp. ' + hargaproduct2)
+    var quantityproduct3 = prompt('Mau Beli ' + product3 + ' Berapa? \n Harga Per-Buah : Rp. ' + hargaproduct3)
+
+    var totalproduct1 = quantityproduct1 * hargaproduct1
+    var totalproduct2 = quantityproduct2 * hargaproduct2
+    var totalproduct3 = quantityproduct3 * hargaproduct3
+
+    var grandtotal = totalproduct1 + totalproduct2 + totalproduct3
+
+    alert(
+        'Daftar Belanja \n\n'
+        + product1 + ' : Rp. ' + hargaproduct1 + ' x ' + quantityproduct1 + ' = ' + totalproduct1 + '\n'
+        + product2 + ' : Rp. ' + hargaproduct2 + ' x ' + quantityproduct2 + ' = ' + totalproduct2 + '\n'
+        + product3 + ' : Rp. ' + hargaproduct3 + ' x ' + quantityproduct3 + ' = ' + totalproduct3 + '\n'
+        + 'Total : Rp. ' + grandtotal
+    )
+</script>

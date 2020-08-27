@@ -1,0 +1,30 @@
+<script>
+// Aplikasi Input Data
+// Aplikasi akan meminta nama terus menerus hingga user meng-input 'Stop'
+ 
+    var input
+    var namaProduct = []
+    var print = ''
+    do{
+        input = prompt('Masukan Nama Product : ')
+        if(input !== 'Stop'){
+            namaProduct.push(input)
+        }
+    }while(input !== 'Stop')
+
+    for(var i = 0 ; i < namaProduct.length ; i ++){
+        print += namaProduct[i] + '\n'
+    }
+    alert(print)
+
+// Aplikasi Menampilkan Data
+
+    // var product = ['Apel','Jeruk','Mangga','Kiwi']
+    var harga = [20000,10000,15000,20000]
+    var menu = ''
+
+    for(var i = 0 ; i < namaProduct.length;i++){
+        menu += namaProduct[i] + ' Rp. ' + harga[i] + '\n'
+    }
+    alert(menu)
+</script>

@@ -1,0 +1,218 @@
+<script>
+    // [APLIKASI KASIR DENGAN ARRAY dan VALIDASI MENGGUNAKAN LOOPING]
+
+    // ****************************** DATA ******************************
+    var products = ['Apel','Anggur','Jeruk']
+    var prices = ['10000','15000','20000']
+    var stocks = [10,15,20]
+    var quantityProducts = [] // Variabel Untuk Menyimpan Jumlah Tiap Product Dari User
+    var totals = [] // Variabel Untuk Menyimpan Harga Tiap Product Dari User
+
+    // *********************************************
+
+
+
+    // ****************************** FUNCTION ******************************
+    function printProduct(title){ // (title) -> Merupakan parameter title yg dapat diubah-ubah
+        var output = title
+        for(var i = 0; i < products.length; i++){
+            output += i+1 + '. ' + products[i] + ' : Harga Rp.' + prices[i] + ' (Stock : ' + stocks[i] + ')\n'
+        }
+        return output
+    }
+
+    function kasir(){
+        do{
+            var menuKasir = prompt(
+            '            Halaman Kasir \n ' +
+            ' ### Purwadhika Mart ### \n ' +
+            ' ----------------------------- \n ' +
+            'Pilih Menu : \n 1. Lihat Products \n 2. Delete Product \n 3. Tambah Product \n 4. Update Product \n 5. Back'
+                )
+            if (menuKasir == 1){
+                // Menu 1 : Menampilkan Data
+                var print = printProduct('Stocks Products \n' +
+                            '----------------- \n') // Function Function Function Function Function  
+                // for(var i = 0; i < products.length; i++){
+                //     print += i+1 + '. ' + products[i] + ' : Harga Rp.' + prices[i] + ' (Stock : ' + stocks[i] + ')\n'
+                // }
+                alert(print)
+            }else if(menuKasir == 2){
+                // Menu 2 : Delete Data
+                deleteData()
+            }else if(menuKasir == 3){
+                // Menu 3 : Tambah Data
+                tambahData()
+            }else if(menuKasir == 4){
+                // Menu 4 : Update Data
+                updateData()
+            }else{
+                
+            }
+        }while(menuKasir != 5)
+    }
+
+    function deleteData(){
+        // 1. Tampilkan Data
+        var checkValidation = false
+        var print = printProduct('( ! ) Delete Data \n' +
+                    '----------------- \n')
+        // 2. Pilih Data yang Akan Dihapus + Validasi
+        while(checkValidation == false){
+            var dataSelected = prompt(print + '\n Pilih Nomor Data yang Akan Dihapus : ')
+            
+            if(dataSelected>0 && (dataSelected-1)<products.length){
+                checkValidation = true
+                // Hapus Data Products
+                products.splice(dataSelected-1, 1)
+                prices.splice(dataSelected-1, 1)
+                stocks.splice(dataSelected-1, 1)
+                alert('Data Deleted Succesfully!')
+            }else{
+                checkValidation = false
+                alert('Data Tidak Tersedia!')
+            }
+        }
+    }
+
+    function tambahData(){
+        var tambahProduct = prompt('( + ) Tambah Product \n Masukan Nama Product : ')
+        products.push(tambahProduct)
+        var tambahPrice = prompt('( + ) Tambah Product \n Masukan Harga Product (Rp) : ')
+        prices.push(tambahPrice)
+        var tambahStock = parseInt(prompt('( + ) Tambah Product \n Masukan Jumlah Stock : '))
+        stocks.push(tambahStock)
+        alert('Data Added Succesfully!')
+    }
+
+    function updateData(){
+        // 1. Tampilkan Data dan Pilih Data yang Akan Diupdate
+        var checkValidation = false
+        var print = printProduct('( ^ ) Update Data \n' +
+                    '------------------- \n')
+        while(checkValidation == false){ // Pilih Data yang Akan Diupdate + Validasi
+            var dataSelected = prompt(print + '\n Pilih Nomor Products yang Akan Diupdate :')
+
+            if(dataSelected>0 && (dataSelected-1)<products.length){
+                checkValidation = true
+            }else{
+                checkValidation = false
+                alert('Data Tidak Tersedia!')
+            }
+        }
+        // 2. Pilih Update Data Nama / Alamat + Validasi
+        var checkValidation = false
+        while(checkValidation == false){
+            var menuUpdateSelected = prompt('( ^ ) Update Product \n ------------------- \n Pilih Update : \n 1. Nama Product \n 2. Harga Product \n 3. Stock Product')
+            
+            if(menuUpdateSelected == 1){
+                checkValidation = true
+                var updateProducts = prompt('( ^ ) Update Data  \n Masukan Nama Product : ')
+                products[dataSelected-1] = updateProducts
+                alert('Data Updated Succesfully!')
+            }else if(menuUpdateSelected == 2){
+                checkValidation = true
+                var updatePrices = prompt('( ^ ) Update Data \n Masukan Harga Product : ')
+                prices[dataSelected-1] = updatePrices
+                alert('Data Updated Succesfully!')
+            }else if(menuUpdateSelected == 3){
+                checkValidation = true
+                var updateStocks = prompt('( ^ ) Update Data \n Masukan Stock Product : ')
+                stocks[dataSelected-1] = updateStocks
+                alert('Data Updated Succesfully!')
+            }else{
+                checkValidation = false
+                alert('Salah Input!')
+            }
+        }
+    }
+
+    function pembeli(){
+        for(var i = 0; i < products.length; i++){
+                var checkQuantity = false
+                while(checkQuantity == false){
+                    var quantityPerProducts = prompt('Masukan Jumlah ' + products[i] + ' : \n ( Harga Per-Kilo : Rp.' + prices[i] + ' )')
+                    
+                    if(quantityPerProducts <= stocks[i]){
+                        checkQuantity = true
+                        quantityProducts.push(quantityPerProducts)
+                        totals.push(Number(quantityPerProducts * prices[i]))
+                    }else if(quantityPerProducts > stocks[i]){
+                        checkQuantity = false
+                        alert('Jumlah Pembelian Anda Melebihi Stock! Maksimal Stock ' + stocks[i])
+                    }else{
+                        checkQuantity = false
+                        alert('Inputan Tidak Sesuai !')
+                    }
+                }
+            }
+            
+            var grandTotal = 0
+            var print = ''
+            print += '   Keranjang Belanja Anda \n' +
+                     '------------------------------- \n'
+            for(var i = 0; i < products.length; i++){
+                grandTotal += totals[i]
+                print += products[i] + ' : ' + quantityProducts[i] + ' x ' + prices[i] + ' = ' + quantityProducts[i] * prices[i] + '\n'
+            }
+            print += '------------------------------- \n' +
+                     ' Total Belanja = Rp.' + grandTotal
+            alert(print)
+
+            var checkPembayaran = false
+            while(checkPembayaran == false){
+                var pembayaran = prompt(
+                    'TOTAL BELANJAAN ANDA : Rp.' + grandTotal + '\n' +
+                    '* Masukan Jumlah Uang Pembayaran Anda (Dalam "Rupiah") *'
+                )
+                if(pembayaran >= grandTotal){
+                    checkPembayaran = true
+                }else if(pembayaran < grandTotal){
+                    checkPembayaran = false
+                    alert('Jumlah Uang yang Anda Masukan Kurang!')
+                }else{
+                    checkPembayaran = false
+                    alert('Inputan Tidak Sesuai!')
+                }
+            }
+
+            var kembalian = pembayaran - grandTotal
+            var print = ''
+            print +=
+                '              STRUCK BELANJA \n' +
+                '     ###  PURWADHIKA MART  ### ' +
+                '----------------------------------------- \n'
+            for(var i = 0; i < products.length; i++){
+                print += products[i] + ' : ' + quantityProducts[i] + ' x ' + prices[i] + ' = ' + quantityProducts[i] * prices[i] + '\n'
+            }
+            print +=
+                '----------------------------------------- \n' +
+                ' Total Belanja = Rp.' + grandTotal + '\n' +
+                ' TUNAI         = Rp.' + pembayaran + '\n' +
+                ' KEMBALI       = Rp.' + kembalian + '\n' +
+                        
+                ' * Terimakasih Telah Berbelanja * '
+            
+            alert(print)
+    }
+    // *********************************************
+        
+
+
+    // ****************************** MAIN MENU ******************************
+    var checkMenu = false
+    while(checkMenu == false){
+        var menu = prompt('Apakah Anda Kasir / Pembeli? \n 1. Kasir \n 2. Pembeli')
+
+        // Masuk ke halaman kasir
+        if(menu == 1){
+            kasir()
+        }else if(menu == 2){
+            pembeli ()
+        }else{
+            checkMenu = false
+            alert('Pilihan Menu Tidak Sesuai!')
+        }
+    }
+    // *********************************************
+</script>

@@ -1,0 +1,109 @@
+<script>
+    // [TARIF PARKIR]
+    // Menentukan Parameter : Jam Masuk, Jam Keluar, Waktu, Tarif Awal, Tarif Selanjutnya, Lama Parkir, Tarif Parkir
+    // Hitung Waktu = Jam Keluar - Jam Masuk (Apabila Jam Masuk dan Jam Keluar Sama-Sama Siang)
+    // Hitung Waktu = (Jam Keluar + 12) - (Jam Masuk + 12) (Apabila Jam Masuk dan Jam Keluar Sama-Sama Malam)
+    // Hitung Waktu = (Jam Keluar + 12) - (Jam Masuk) (Apabila Jam Masuk Siang dan Jam Keluar Malam)
+    // Hitung Waktu = (Jam Keluar + 24) - (Jam Masuk + 12) (Apabila Jam Masuk Malam dan Jam Keluar Siang)
+    
+    var jamMasuk, jamKeluar, waktuMasuk, waktuKeluar, tarif1, tarif2, lamaParkir, tarifParkir
+
+    tarif1 = 1000
+    tarif2 = 2000
+
+    jamMasuk = parseInt(prompt('Jam Masuk Parkiran : \n Ketik 1-12'))
+    // Validasi Jam Masuk
+    if(jamMasuk > 0 && jamMasuk <= 12){
+
+    }else{
+        alert('Close Program! Wrong Input!')
+        throw Error()
+    }
+    waktuMasuk = parseInt(prompt('Waktu Masuk : \n Ketik 1 -> AM (Pagi-Siang) \n Ketik 2 -> PM (Sore-Malam)'))
+    // Validasi Waktu Masuk
+    if(waktuMasuk == 1 || waktuMasuk == 2){
+
+    }else{
+        alert('Close Program! Wrong Input!')
+        throw Error()
+    }
+
+    jamKeluar = parseInt(prompt('Jam Keluar Parkiran : \n Ketik 1-12'))
+    // Validasi Jam Keluar
+    if(jamKeluar > 0 && jamKeluar <= 12){
+
+    }else{
+        alert('Close Program! Wrong Input!')
+        throw Error()
+    }
+
+    waktuKeluar = parseInt(prompt('Waktu Keluar : \n Ketik 1 -> AM (Pagi-Siang) \n Ketik 2 -> PM (Sore-Malam)'))
+    // Validasi Waktu Keluar
+    if(waktuKeluar == 1 || waktuKeluar == 2){
+
+    }else{
+        alert('Close Program! Wrong Input!')
+        throw Error()
+    }
+
+
+
+    // Jika Jam Keluar < Jam Masuk Dalam Kurun Waktu yang Sama
+    if(jamKeluar < jamMasuk && waktuMasuk == waktuKeluar){
+        alert('Jam Keluar Kurang Dari Jam Masuk!')
+    }else{
+        if(waktuMasuk == 1 && waktuKeluar == 1){ // Waktu Masuk dan Waktu Keluar Sama-Sama Siang
+            lamaParkir = jamKeluar - jamMasuk
+            if(lamaParkir <= 4){                // Tarif 4 Jam Awal
+                tarifParkir = lamaParkir * tarif1
+            }else{                              // Tarif 4 Jam Selanjutnya
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            }
+        }else if(waktuMasuk == 2 && waktuKeluar == 2){  // Waktu Masuk dan Waktu Keluar Sama-Sama Malam
+            lamaParkir = (jamKeluar + 12) - (jamMasuk + 12)
+            if(lamaParkir <= 4){                        
+                tarifParkir = lamaParkir * tarif1
+            }else{                                      
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            } 
+        }else if(waktuMasuk == 1 && waktuKeluar == 2){  // Waktu Masuk Siang dan Waktu Keluar Malam
+            lamaParkir = (jamKeluar + 12) - jamMasuk
+            if(lamaParkir <= 4){                       
+                tarifParkir = lamaParkir * tarif1
+            }else{                                      
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            } 
+        }else{                                          // Waktu Masuk Malam dan Waktu Keluar Siang
+            lamaParkir = (jamKeluar + 24) - (jamMasuk + 12)
+            if(lamaParkir <= 4){                        
+                tarifParkir = lamaParkir * tarif1
+            }else{                                      
+                tarifParkir = tarif1 * 4 + (lamaParkir - 4) * tarif2
+            } 
+        }
+        
+        if(waktuMasuk == 1 ){
+        waktuMasuk = ' A.M.'
+        }else{
+            waktuMasuk = ' P.M.'
+        }
+        if(waktuKeluar == 1){
+            waktuKeluar = ' A.M.'
+        }else{
+            waktuKeluar = ' P.M.'
+        }
+
+        alert(
+            '           PARKING TICKET \n ' +
+            'UNION SPACE PURWADHIKA \n ' +
+            '--------------------------------- \n' +
+            'Jam Masuk  : ' + jamMasuk + waktuMasuk + '\n' +
+            'Jam Keluar : ' + jamKeluar + waktuKeluar + '\n' +
+            'DURASI     : ' + lamaParkir + ' Jam \n' +
+            'TARIF      : ' + tarifParkir + '\n' +
+            '--------------------------------- \n' +
+            ' *** Hati-Hati di Jalan, Terimakasih. ***'
+        )
+    }
+
+</script>
