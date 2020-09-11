@@ -12,8 +12,8 @@ nama += 'Tridya' // Nama = Nama + Tridya (Defryan Tridya)
 
 var angka;
 angka = 10
-angka += 20 // Angka = Angka + 20 (10 + 20 = 30)
-angka *= 2 // Angka = Angka * 2 (30 * 2 = 60)
+angka += 20 // Angka = Angka + 20 ---> (10 + 20 = 30)
+angka *= 2 // Angka = Angka * 2 ---> (30 * 2 = 60)
 
 console.log(angka)
 
@@ -89,7 +89,7 @@ if(nilai == 50){
 
 
 
-// Nested Condition : If di dala if
+// Nested Condition : If di dalam if
 
 var angka = 9
 
